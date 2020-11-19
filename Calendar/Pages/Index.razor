@@ -19,14 +19,11 @@
 
 	void CreateMonth()
 	{
-		month = DateTime.Now.Month + monthsAway;
-		year = DateTime.Now.Year;
+		var tempDate = DateTime.Now.AddMonths(monthsAway);
+		month = tempDate.Month;
+		year = tempDate.Year;
 
-		year += (month - 1) / 12;
-		month = ((month - 1) % 12) + 1;
-
-		DateTime monthStart = new DateTime(year,
-		month, 1);
+		DateTime monthStart = new DateTime(year, month, 1);
 		monthEnd = monthStart.AddMonths(1).AddDays(-1);
 		monthName = monthStart.Month switch
 		{
